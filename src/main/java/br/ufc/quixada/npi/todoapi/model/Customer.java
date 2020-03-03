@@ -19,7 +19,7 @@ public class Customer implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer _id;
+    private Integer id;
 
     @NotEmpty
     private String name;
@@ -29,26 +29,25 @@ public class Customer implements UserDetails {
     private String email;
 
     @NotEmpty
-    @JsonIgnore
     private String password;
 
     private boolean available;
 
     public Customer() {}
 
-    public Customer(int _id, String name, String email, boolean available) {
-        this._id = _id;
+    public Customer(int id, String name, String email, boolean available) {
+        this.id = id;
         this.name = name;
         this.email = email;
         this.available = available;
     }
 
-    public Integer get_id() {
-        return _id;
+    public Integer getId() {
+        return id;
     }
 
-    public void set_id(Integer id) {
-        this._id = id;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -127,9 +126,19 @@ public class Customer implements UserDetails {
         if (getClass() != obj.getClass())
             return false;
         Customer other = (Customer) obj;
-        if (_id == null) {
-            return other._id == null;
-        } else return _id.equals(other._id);
+        if (id == null) {
+            return other.id == null;
+        } else return id.equals(other.id);
     }
 
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", available=" + available +
+                '}';
+    }
 }

@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface ProjectRepository extends JpaRepository<Project, Integer> {
 
-    @Query("SELECT new Project (p._id, p.title, p.description, p.color, p.createdAt) FROM Project p")
+    @Query("SELECT new Project (p.id, p.title, p.description, p.color, p.createdAt) FROM Project p")
     List<Project> findAll();
 }

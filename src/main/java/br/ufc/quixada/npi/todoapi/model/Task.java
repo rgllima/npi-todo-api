@@ -8,7 +8,7 @@ public class Task {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer _id;
+    private Integer id;
 
     @NotEmpty
     private String title;
@@ -28,8 +28,8 @@ public class Task {
 
     public Task() {}
 
-    public  Task(int _id, String title, String description, Project project, String date, String time, boolean checked, String createdAt) {
-        this._id = _id;
+    public  Task(int id, String title, String description, Project project, String date, String time, boolean checked, String createdAt) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.project = project;
@@ -39,12 +39,12 @@ public class Task {
         this.createdAt = createdAt;
     }
 
-    public int get_id() {
-        return _id;
+    public int getId() {
+        return id;
     }
 
-    public void set_id(int _id) {
-        this._id = _id;
+    public void setId(int _id) {
+        this.id = _id;
     }
 
     public String getTitle() {
@@ -106,7 +106,7 @@ public class Task {
     @Override
     public String toString() {
         return "Task{" +
-                "_id='" + _id + '\'' +
+                "_id='" + id + '\'' +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", project=" + project +

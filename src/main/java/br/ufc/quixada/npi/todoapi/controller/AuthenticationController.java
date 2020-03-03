@@ -1,8 +1,8 @@
 package br.ufc.quixada.npi.todoapi.controller;
 
 import br.ufc.quixada.npi.todoapi.config.JwtTokenProvider;
-import br.ufc.quixada.npi.todoapi.model.User;
-import br.ufc.quixada.npi.todoapi.respository.UserRepository;
+import br.ufc.quixada.npi.todoapi.model.Customer;
+import br.ufc.quixada.npi.todoapi.respository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -29,7 +29,7 @@ public class AuthenticationController {
     private JwtTokenProvider jwtTokenProvider;
 
     @Autowired
-    private UserRepository userRepository;
+    private CustomerRepository customerRepository;
 
     @PostMapping("/login")
     public ResponseEntity<Object> signin(@RequestBody AuthenticationRequest data) {
@@ -38,9 +38,9 @@ public class AuthenticationController {
             String username = data.getUsername();
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, data.getPassword()));
             String token = jwtTokenProvider.createToken(username, new ArrayList());
-            User user = userRepository.findByEmail(username);
+            Customer customer = customerRepository.findByEmail(username);
             Map<Object, Object> model = new HashMap<>();
-            model.put("username", user.getName());
+            model.put("username", customer.getName());
             model.put("token", "Bearer " + token);
             return ok(model);
 

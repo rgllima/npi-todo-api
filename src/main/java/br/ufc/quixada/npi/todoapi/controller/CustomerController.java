@@ -1,7 +1,7 @@
 package br.ufc.quixada.npi.todoapi.controller;
 
-import br.ufc.quixada.npi.todoapi.model.User;
-import br.ufc.quixada.npi.todoapi.service.UserService;
+import br.ufc.quixada.npi.todoapi.model.Customer;
+import br.ufc.quixada.npi.todoapi.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,24 +10,24 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/users")
-public class UserController {
+public class CustomerController {
 
     @Autowired
-    private UserService userService;
+    private CustomerService customerService;
 
     @GetMapping("")
-    public ResponseEntity<List<User>> findAll() {
-        return  ResponseEntity.ok(userService.findAll());
+    public ResponseEntity<List<Customer>> findAll() {
+        return  ResponseEntity.ok(customerService.findAll());
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<List<User>> find(@PathVariable Integer id) {
+    public ResponseEntity<List<Customer>> find(@PathVariable Integer id) {
         // Busca usuário pelo id e retornar usuário...
         return ResponseEntity.ok().build();
     }
 
     @PostMapping("")
-    public ResponseEntity<List<User>> create(@RequestBody User usuario) {
+    public ResponseEntity<List<Customer>> create(@RequestBody Customer usuario) {
         // Cadastrar usuário e retornar usuário cadastrado...
         return ResponseEntity.ok().build();
     }

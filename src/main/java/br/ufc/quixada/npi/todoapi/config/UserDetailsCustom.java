@@ -1,7 +1,7 @@
 package br.ufc.quixada.npi.todoapi.config;
 
-import br.ufc.quixada.npi.todoapi.model.User;
-import br.ufc.quixada.npi.todoapi.service.UserService;
+import br.ufc.quixada.npi.todoapi.model.Customer;
+import br.ufc.quixada.npi.todoapi.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,16 +12,16 @@ import org.springframework.stereotype.Service;
 public class UserDetailsCustom implements UserDetailsService {
 
     @Autowired
-    private UserService userService;
+    private CustomerService customerService;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = userService.findByEmail(email);
+        Customer customer = customerService.findByEmail(email);
 
-        if (user == null) {
+        if (customer == null) {
             throw new UsernameNotFoundException("Usuário e/ou senha inválidos");
         } else {
-            return user;
+            return customer;
         }
 
     }

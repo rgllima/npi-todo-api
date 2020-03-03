@@ -10,8 +10,8 @@ import javax.validation.constraints.NotEmpty;
 public class Project {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String _id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer _id;
 
     @NotEmpty
     private String title;
@@ -22,7 +22,7 @@ public class Project {
 
     public Project() {}
 
-    public Project(String _id, String title, String description, String color, String createdAt) {
+    public Project(int _id, String title, String description, String color, String createdAt) {
         this._id = _id;
         this.title = title;
         this.description = description;
@@ -30,11 +30,11 @@ public class Project {
         this.createdAt = createdAt;
     }
 
-    public String get_id() {
+    public int get_id() {
         return _id;
     }
 
-    public void set_id(String _id) {
+    public void set_id(int _id) {
         this._id = _id;
     }
 

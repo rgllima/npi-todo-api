@@ -13,7 +13,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Entity
-public class User implements UserDetails {
+public class Customer implements UserDetails {
 
     private static final long serialVersionUID = 1L;
 
@@ -34,12 +34,13 @@ public class User implements UserDetails {
 
     private boolean available;
 
-    public User() {}
+    public Customer() {}
 
-    public User (Integer _id, String name, String email) {
+    public Customer(int _id, String name, String email, boolean available) {
         this._id = _id;
         this.name = name;
         this.email = email;
+        this.available = available;
     }
 
     public Integer get_id() {
@@ -125,7 +126,7 @@ public class User implements UserDetails {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        User other = (User) obj;
+        Customer other = (Customer) obj;
         if (_id == null) {
             return other._id == null;
         } else return _id.equals(other._id);

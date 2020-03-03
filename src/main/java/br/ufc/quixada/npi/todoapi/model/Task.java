@@ -7,8 +7,8 @@ import javax.validation.constraints.NotEmpty;
 public class Task {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String _id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer _id;
 
     @NotEmpty
     private String title;
@@ -28,7 +28,7 @@ public class Task {
 
     public Task() {}
 
-    public  Task(String _id, String title, String description, Project project, String date, String time, boolean checked, String createdAt) {
+    public  Task(int _id, String title, String description, Project project, String date, String time, boolean checked, String createdAt) {
         this._id = _id;
         this.title = title;
         this.description = description;
@@ -39,11 +39,11 @@ public class Task {
         this.createdAt = createdAt;
     }
 
-    public String get_id() {
+    public int get_id() {
         return _id;
     }
 
-    public void set_id(String _id) {
+    public void set_id(int _id) {
         this._id = _id;
     }
 

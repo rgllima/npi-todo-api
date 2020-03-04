@@ -1,6 +1,5 @@
 package br.ufc.quixada.npi.todoapi.service.impl;
 
-import br.ufc.quixada.npi.todoapi.exception.StandardError;
 import br.ufc.quixada.npi.todoapi.model.Customer;
 import br.ufc.quixada.npi.todoapi.respository.CustomerRepository;
 import br.ufc.quixada.npi.todoapi.service.CustomerService;
@@ -17,8 +16,8 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer create(String name, String email, String password) {
-
         Customer customer = new Customer();
+
         customer.setName(name);
         customer.setPassword(password);
         customer.setEmail(email);
@@ -47,8 +46,15 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer update(int id, String name, String email) {
-        return null;
+    public void update(int id, Customer customer) {
+        if (!customer.getName().isEmpty()) {
+            customerRepository.updateName(id, customer.getName());
+        }
+
+        if (!customer.getPassword().isEmpty()) {
+            //TODO Encriptar a senha
+            customerRepository.updatePassword(id, customer.getName());
+        }
     }
 
     @Override

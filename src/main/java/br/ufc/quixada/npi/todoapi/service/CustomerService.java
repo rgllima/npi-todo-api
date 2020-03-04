@@ -1,6 +1,7 @@
 package br.ufc.quixada.npi.todoapi.service;
 
 import br.ufc.quixada.npi.todoapi.model.Customer;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public interface CustomerService {
 
     List<Customer> findAll();
 
-    Customer update(int id, String name, String email);
+    void update(int id, Customer customer);
 
     Customer delete(int id);
 }

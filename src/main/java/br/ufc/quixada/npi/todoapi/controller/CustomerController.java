@@ -1,17 +1,12 @@
 package br.ufc.quixada.npi.todoapi.controller;
 
-import br.ufc.quixada.npi.todoapi.exception.StandardError;
 import br.ufc.quixada.npi.todoapi.model.Customer;
 import br.ufc.quixada.npi.todoapi.service.CustomerService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.PrintWriter;
 import java.util.List;
 
 @RestController
@@ -52,6 +47,7 @@ public class CustomerController {
     public ResponseEntity<Customer> delete(@PathVariable Integer id)  {
         Customer customer = customerService.findById(id);
 
+        //TODO informar ao usuário que ele não pode excluir alguém que está habilitado
         if (customer.isEnabled()) {
             return ResponseEntity.badRequest().build();
         }
@@ -59,9 +55,11 @@ public class CustomerController {
         return ResponseEntity.ok(customerService.delete(id));
     }
 
-    // @PutMapping("{id}")
-    /*public ResponseEntity<Usuario> update(@RequestBody Usuario usuario) {
-
-    }*/
+    @PutMapping("{id}")
+    public ResponseEntity<Customer> update(@RequestBody Customer customer, @PathVariable Integer id) {
+        //TODO Informar quando não ocorrer a atualização
+        customerService.update(id, customer);
+        return ResponseEntity.ok().build();
+    }
 
 }

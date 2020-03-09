@@ -15,12 +15,12 @@ public interface ProjectRepository extends JpaRepository<Project, Integer> {
 
     Project findById(int id);
 
-    @Query("SELECT new Project (p.id, p.title, p.description, p.color, p.createdAt) FROM Project p")
+    @Query(value = "SELECT new Project (p.id, p.title, p.description, p.color, p.createdAt) FROM Project p")
     List<Project> findAll();
 
     @Transactional
     @Modifying
-    @Query("UPDATE Project p SET p.title=(:title) WHERE p.id=(:id)")
+    @Query(value = "UPDATE Project p SET p.title=(:title) WHERE p.id=(:id)")
     void updateTitle(@Param("id") int id, @Param("title") String title);
 
     @Transactional

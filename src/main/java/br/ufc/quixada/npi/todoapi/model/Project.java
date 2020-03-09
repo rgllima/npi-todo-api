@@ -1,26 +1,30 @@
 package br.ufc.quixada.npi.todoapi.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Project {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
 
     @NotEmpty
     private String title;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Task> tasks;
     
     private String description;
     private String color;
     private String createdAt;
 
-    public Project() {}
+    public Project() {
+        tasks = new ArrayList<>();
+    }
 
     public Project(int id, String title, String description, String color, String createdAt) {
         this.id = id;
@@ -28,14 +32,15 @@ public class Project {
         this.description = description;
         this.color = color;
         this.createdAt = createdAt;
+        tasks = new ArrayList<>();
     }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int _id) {
-        this.id = _id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -70,10 +75,18 @@ public class Project {
         this.createdAt = createdAt;
     }
 
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
+    }
+
     @Override
     public String toString() {
         return "Project{" +
-                "_id='" + id + '\'' +
+                "id='" + id + '\'' +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", color='" + color + '\'' +

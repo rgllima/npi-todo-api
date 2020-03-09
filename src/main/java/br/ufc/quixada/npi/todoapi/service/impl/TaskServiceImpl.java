@@ -37,6 +37,11 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
+    public List<Task> findAll() {
+        return taskRepository.findAll();
+    }
+
+    @Override
     public List<Task> findByProject(int p_id) {
         return taskRepository.findByProject(p_id);
     }

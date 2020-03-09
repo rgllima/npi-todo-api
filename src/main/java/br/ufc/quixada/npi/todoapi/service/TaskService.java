@@ -11,6 +11,8 @@ public interface TaskService {
 
     Task findById(int id);
 
+    List<Task> findAll();
+
     List<Task> findByProject(int p_id);
 
     void update(int id, Task task);

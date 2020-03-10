@@ -17,7 +17,5 @@ public interface TaskService {
 
     void update(int id, Task task);
 
-    void updateChecked(int id, boolean value);
-
     Task delete(int id);
 }

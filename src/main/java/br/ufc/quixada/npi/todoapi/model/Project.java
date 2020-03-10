@@ -2,8 +2,6 @@ package br.ufc.quixada.npi.todoapi.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 public class Project {
@@ -14,16 +12,12 @@ public class Project {
 
     @NotEmpty
     private String title;
-
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Task> tasks;
     
     private String description;
     private String color;
     private String createdAt;
 
     public Project() {
-        tasks = new ArrayList<>();
     }
 
     public Project(int id, String title, String description, String color, String createdAt) {
@@ -32,7 +26,6 @@ public class Project {
         this.description = description;
         this.color = color;
         this.createdAt = createdAt;
-        tasks = new ArrayList<>();
     }
 
     public int getId() {
@@ -73,14 +66,6 @@ public class Project {
 
     public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
-    }
-
-    public List<Task> getTasks() {
-        return tasks;
-    }
-
-    public void setTasks(List<Task> tasks) {
-        this.tasks = tasks;
     }
 
     @Override

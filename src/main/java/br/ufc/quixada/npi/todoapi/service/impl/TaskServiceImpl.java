@@ -28,6 +28,8 @@ public class TaskServiceImpl implements TaskService {
         task.setChecked(false);
         task.setCreatedAt(new Date().toString());
 
+        System.out.println(task.toString());
+
         return taskRepository.save(task);
     }
 
@@ -56,9 +58,9 @@ public class TaskServiceImpl implements TaskService {
             taskRepository.updateDescription(id, task.getDescription());
         }
 
-//        if (task.getProject() != null) {
-//            taskRepository.updateProject(id, task.getProject());
-//        }
+        if (task.getProject() != null) {
+            taskRepository.updateProject(id, task.getProject());
+        }
 
         if (!task.getDate().isEmpty()) {
             taskRepository.updateDate(id, task.getDate());
@@ -67,11 +69,8 @@ public class TaskServiceImpl implements TaskService {
         if (!task.getTime().isEmpty()) {
             taskRepository.updateTime(id, task.getTime());
         }
-    }
 
-    @Override
-    public void updateChecked(int id, boolean value) {
-        taskRepository.updateChecked(id, value);
+        taskRepository.updateChecked(id, task.isChecked());
     }
 
     @Override

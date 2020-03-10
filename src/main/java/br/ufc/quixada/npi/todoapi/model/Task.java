@@ -14,7 +14,7 @@ public class Task {
     private String title;
     private String description;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Project project;
 
     @NotEmpty

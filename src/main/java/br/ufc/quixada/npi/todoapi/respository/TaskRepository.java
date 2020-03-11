@@ -1,5 +1,6 @@
 package br.ufc.quixada.npi.todoapi.respository;
 
+import br.ufc.quixada.npi.todoapi.model.Customer;
 import br.ufc.quixada.npi.todoapi.model.Project;
 import br.ufc.quixada.npi.todoapi.model.Task;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -16,11 +17,11 @@ public interface TaskRepository extends JpaRepository<Task, Integer> {
 
     Task findById(int id);
 
-    @Query("SELECT new Task (t.id, t.title, t.description, t.project, t.date, t.time, t.checked, t.createdAt) FROM Task t")
-    List<Task> findAll();
+    @Query("SELECT new Task (t.id, t.title, t.description, t.project, t.date, t.time, t.checked, t.createdAt) FROM Task t WHERE t.customer=(:customer)")
+    List<Task> findAllByCustomer(@Param("customer") Customer customer);
 
-    @Query("SELECT new Task (t.id, t.title, t.description, t.project, t.date, t.time, t.checked, t.createdAt) FROM Task t WHERE t.project=(:p_id)")
-    List<Task> findByProject(@Param("p_id") int id);
+    @Query("SELECT new Task (t.id, t.title, t.description, t.project, t.date, t.time, t.checked, t.createdAt) FROM Task t WHERE t.project=(:project_id)")
+    List<Task> findByProject(@Param("project_id") int project_id);
 
     @Transactional
     @Modifying

@@ -1,5 +1,6 @@
 package br.ufc.quixada.npi.todoapi.respository;
 
+import br.ufc.quixada.npi.todoapi.model.Customer;
 import br.ufc.quixada.npi.todoapi.model.Project;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -15,8 +16,8 @@ public interface ProjectRepository extends JpaRepository<Project, Integer> {
 
     Project findById(int id);
 
-    @Query(value = "SELECT new Project (p.id, p.title, p.description, p.color, p.createdAt) FROM Project p")
-    List<Project> findAll();
+    @Query(value = "SELECT new Project (p.id, p.title, p.description, p.color, p.createdAt) FROM Project p WHERE p.customer=(:customer)")
+    List<Project> findAllByCustomer(@Param("customer") Customer customer);
 
     @Transactional
     @Modifying

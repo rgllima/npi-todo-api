@@ -1,5 +1,6 @@
 package br.ufc.quixada.npi.todoapi.service.impl;
 
+import br.ufc.quixada.npi.todoapi.model.Customer;
 import br.ufc.quixada.npi.todoapi.model.Project;
 import br.ufc.quixada.npi.todoapi.respository.ProjectRepository;
 import br.ufc.quixada.npi.todoapi.service.ProjectService;
@@ -16,11 +17,12 @@ public class ProjectServiceImpl implements ProjectService {
     private ProjectRepository projectRepository;
 
     @Override
-    public Project create(String title, String description, String color) {
+    public Project create(String title, String description, String color, Customer customer) {
         Project project = new Project();
 
         project.setTitle(title);
         project.setDescription(description);
+        project.setCustomer(customer);
         project.setColor(color);
         project.setCreatedAt(new Date().toString());
 
@@ -28,8 +30,8 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public List<Project> findAll() {
-        return projectRepository.findAll();
+    public List<Project> findAllByCustomer(Customer customer) {
+        return projectRepository.findAllByCustomer(customer);
     }
 
     @Override

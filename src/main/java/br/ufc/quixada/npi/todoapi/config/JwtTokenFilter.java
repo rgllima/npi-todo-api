@@ -37,6 +37,8 @@ public class JwtTokenFilter extends GenericFilterBean {
             if (token != null && jwtTokenProvider.validateToken(token)) {
                 Authentication auth = jwtTokenProvider.getAuthentication(token);
 
+                req.setAttribute("username", jwtTokenProvider.getUsername(token));
+
                 String refreshToken = jwtTokenProvider.createRefreshToken(token);
                 res.setHeader("Access-Control-Expose-Headers", "Authorization");
                 res.setHeader("Authorization", "Bearer " + refreshToken);

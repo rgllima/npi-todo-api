@@ -17,6 +17,9 @@ public class Task {
     @ManyToOne
     private Project project;
 
+    @ManyToOne
+    private Customer customer;
+
     @NotEmpty
     private String date;
 
@@ -69,6 +72,14 @@ public class Task {
 
     public void setProject(Project project) {
         this.project = project;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public String getDate() {

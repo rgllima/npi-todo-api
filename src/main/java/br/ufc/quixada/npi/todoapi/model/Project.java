@@ -12,6 +12,9 @@ public class Project {
 
     @NotEmpty
     private String title;
+
+    @ManyToOne
+    private Customer customer;
     
     private String description;
     private String color;
@@ -42,6 +45,14 @@ public class Project {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public String getDescription() {

@@ -16,13 +16,6 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
-    @PostMapping("")
-    public ResponseEntity<Customer> create(@RequestBody Customer body) {
-        //FIXME Rever como fazer a autenticação do usuário
-        String password = new BCryptPasswordEncoder(12).encode(body.getPassword());
-        return ResponseEntity.ok(customerService.create(body.getName(), body.getEmail(), password));
-    }
-
     @GetMapping("")
     public ResponseEntity<List<Customer>> findAll() {
         return  ResponseEntity.ok(customerService.findAll());

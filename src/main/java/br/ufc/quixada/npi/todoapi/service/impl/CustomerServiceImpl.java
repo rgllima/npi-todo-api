@@ -4,6 +4,7 @@ import br.ufc.quixada.npi.todoapi.model.Customer;
 import br.ufc.quixada.npi.todoapi.respository.CustomerRepository;
 import br.ufc.quixada.npi.todoapi.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class CustomerServiceImpl implements CustomerService {
         customer.setName(name);
         customer.setPassword(password);
         customer.setEmail(email);
+        customer.setAvailable(true);
 
         return customerRepository.save(customer);
     }
@@ -52,8 +54,8 @@ public class CustomerServiceImpl implements CustomerService {
         }
 
         if (!customer.getPassword().isEmpty()) {
-            //TODO Encriptar a senha
-            customerRepository.updatePassword(id, customer.getName());
+            String password = new BCryptPasswordEncoder(12).encode(customer.getPassword());
+            customerRepository.updatePassword(id, password);
         }
     }
 

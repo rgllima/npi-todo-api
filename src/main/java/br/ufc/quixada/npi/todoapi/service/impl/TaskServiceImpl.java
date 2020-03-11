@@ -1,5 +1,6 @@
 package br.ufc.quixada.npi.todoapi.service.impl;
 
+import br.ufc.quixada.npi.todoapi.model.Customer;
 import br.ufc.quixada.npi.todoapi.model.Project;
 import br.ufc.quixada.npi.todoapi.model.Task;
 import br.ufc.quixada.npi.todoapi.respository.TaskRepository;
@@ -17,11 +18,12 @@ public class TaskServiceImpl implements TaskService {
     private TaskRepository taskRepository;
 
     @Override
-    public Task create(String title, String description, Project project, String date, String time) {
+    public Task create(String title, String description, Project project, String date, String time, Customer customer) {
         Task task = new Task();
 
         task.setTitle(title);
         task.setDescription(description);
+        task.setCustomer(customer);
         task.setProject(project);
         task.setDate(date);
         task.setTime(time);
@@ -39,8 +41,8 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public List<Task> findAll() {
-        return taskRepository.findAll();
+    public List<Task> findAllByCustomer(Customer customer) {
+        return taskRepository.findAllByCustomer(customer);
     }
 
     @Override

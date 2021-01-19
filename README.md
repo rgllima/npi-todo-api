@@ -1,1 +1,1 @@
-# todo-api
+Esse projeto foi desenvolvido no início do semestre 2020.1 como objetivo de conhecer as ferramentas que seriam utilizadas durante o Estágio 1 no [Núcleo de Práticas em Informática (NPI) da UFC Quixadá](http://www.npi.quixada.ufc.br/).
